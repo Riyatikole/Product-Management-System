@@ -1,12 +1,11 @@
 const Product = require("../models/productModel");
 const mongoose = require("mongoose");
 
-// Add a new product with user authorization
 exports.addProduct = async (req, res) => {
   try {
     const product = new Product({
       ...req.body,
-      user: new mongoose.Types.ObjectId(req.user._id), // Associate product with the logged-in user
+      user: new mongoose.Types.ObjectId(req.user._id), 
     });
 
     await product.save();
@@ -16,7 +15,7 @@ exports.addProduct = async (req, res) => {
   }
 };
 
-// Get all products for the authenticated user
+
 exports.getProducts = async (req, res) => {
   try {
     const products = await Product.find({ user: new mongoose.Types.ObjectId(req.user._id) });
@@ -26,7 +25,7 @@ exports.getProducts = async (req, res) => {
   }
 };
 
-// Get a product by ID, ensuring it's owned by the authenticated user
+
 exports.getProductById = async (req, res) => {
   try {
     const product = await Product.findOne({
@@ -40,7 +39,7 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-// Update a product, ensuring only the owner can update it
+
 exports.updateProduct = async (req, res) => {
   try {
     const product = await Product.findOneAndUpdate(
@@ -55,7 +54,7 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-// Delete a product, ensuring only the owner can delete it
+
 exports.deleteProduct = async (req, res) => {
   try {
     const product = await Product.findOneAndDelete({

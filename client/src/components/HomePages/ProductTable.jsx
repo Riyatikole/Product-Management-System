@@ -37,7 +37,6 @@ function ProductTable() {
     }
   };
 
-  // Save a new product
   const handleSave = async (e) => {
     e.preventDefault();
     try {
@@ -63,8 +62,8 @@ function ProductTable() {
         });
       }
 
-      setProductInput({ id: "", name: "", description: "", price: "" }); // Clear input fields
-      fetchProducts(); // Refresh product list
+      setProductInput({ id: "", name: "", description: "", price: "" }); 
+      fetchProducts(); 
     } catch (error) {
       console.error("Error saving product:", error);
       toast({
@@ -87,7 +86,7 @@ function ProductTable() {
         duration: 3000,
         isClosable: true,
       });
-      fetchProducts(); // Refresh product list after deletion
+      fetchProducts(); 
     } catch (error) {
       console.error("Error deleting product:", error);
       toast({
@@ -100,19 +99,19 @@ function ProductTable() {
     }
   };
 
-  // Populate input fields for editing
+  
   const handleEdit = (product) => {
     setProductInput({ id: product._id, name: product.name, description: product.description, price: product.price });
   };
 
-  // Load products on component mount
+  
   useEffect(() => {
     fetchProducts();
   }, []);
 
   return (
     <Box p={4}>
-      {/* Product Input Form */}
+      
       <Box as="form" mb={4} onSubmit={handleSave}>
         <Input
           placeholder="Product Name"
@@ -141,7 +140,7 @@ function ProductTable() {
         </Button>
       </Box>
 
-      {/* Product Table */}
+     
       <TableContainer>
         {products.length === 0 ? (
           <Text>No product available</Text>
